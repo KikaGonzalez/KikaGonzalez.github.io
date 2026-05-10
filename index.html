@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reloj Express Osorno</title>
+    <title>Reloj Express Osorno | Excelencia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --azul-oscuro: #050a0f;
-            --naranja: #E67E22;
-            --blanco: #ffffff;
+            --bg-deep: #050a0f;
+            --accent-whatsapp: #25d366;
+            --text-main: #f8f9fa;
         }
 
         * {
@@ -19,87 +20,131 @@
         }
 
         body {
-            background-color: var(--azul-oscuro);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--blanco);
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
         }
 
-        /* --- SECCIÓN PRINCIPAL (HERO) --- */
-        .hero-container {
+        /* --- SECCIÓN HERO (IMAGEN PRINCIPAL) --- */
+        .hero {
             position: relative;
             width: 100%;
-            height: 100vh; /* Ocupa toda la pantalla */
+            height: 80vh; /* Ajustado para que se vea la galería abajo */
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* Aquí cargamos tu imagen nueva */
-            background: url('hero-reloj.jpg') no-repeat center center;
+            /* LLAMADA A LA IMAGEN PRINCIPAL */
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('hero-reloj.jpg');
             background-size: cover;
-        }
-
-        /* Capa oscura suave para que el botón resalte más */
-        .hero-container::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.2); 
-            z-index: 1;
-        }
-
-        /* --- BOTÓN DE WHATSAPP FLOTANTE O CENTRAL --- */
-        .cta-wrapper {
-            position: relative;
-            z-index: 2;
-            margin-top: 300px; /* Ajusta esto para mover el botón arriba o abajo sobre la imagen */
+            background-position: center;
         }
 
         .btn-whatsapp {
-            background-color: #25d366; /* Verde oficial WhatsApp */
+            background-color: var(--accent-whatsapp);
             color: white;
-            padding: 20px 40px;
+            padding: 18px 35px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2rem;
+            font-weight: 600;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
-            gap: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
+            gap: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            transition: 0.3s;
+            z-index: 10;
         }
 
         .btn-whatsapp:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px);
             background-color: #128c7e;
         }
 
-        /* Footer sencillo */
-        footer {
-            position: absolute;
-            bottom: 20px;
-            width: 100%;
+        /* --- SECCIÓN GALERÍA (reloj1, reloj2, reloj3, reloj4) --- */
+        .portfolio {
+            padding: 60px 8%;
+            background-color: var(--bg-deep);
+        }
+
+        .portfolio h2 {
             text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: #fff;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
             font-size: 0.8rem;
-            opacity: 0.7;
-            z-index: 2;
+            opacity: 0.5;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        @media (max-width: 768px) {
+            .hero { height: 60vh; }
+            .portfolio h2 { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="hero-container">
-        <div class="cta-wrapper">
-            <a href="https://wa.me/569XXXXXXXX" class="btn-whatsapp">
-                <i class="fab fa-whatsapp"></i>
-                AGENDAR SERVICIO
-            </a>
+    <header class="hero">
+        <a href="https://wa.me/569XXXXXXXX" class="btn-whatsapp">
+            <i class="fab fa-whatsapp"></i>
+            AGENDAR SERVICIO EXPRESS
+        </a>
+    </header>
+
+    <section class="portfolio">
+        <h2>Nuestros Trabajos</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="reloj1.jpg" alt="Reloj 1">
+            </div>
+            <div class="gallery-item">
+                <img src="reloj2.jpg" alt="Reloj 2">
+            </div>
+            <div class="gallery-item">
+                <img src="reloj3.jpg" alt="Reloj 3">
+            </div>
+            <div class="gallery-item">
+                <img src="reloj4.jpg" alt="Reloj 4">
+            </div>
         </div>
-        
-        <footer>
-            RELOJ EXPRESS OSORNO - SERVICIO TÉCNICO PROFESIONAL
-        </footer>
-    </div>
+    </section>
+
+    <footer>
+        RELOJ EXPRESS OSORNO &copy; 2026 - CALIDAD Y PRECISIÓN
+    </footer>
 
 </body>
 </html>
