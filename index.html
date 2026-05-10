@@ -10,7 +10,8 @@
         :root {
             --bg-deep: #050a0f;
             --bg-card: rgba(16, 28, 43, 0.7);
-            --accent: #f39c12; /* Dorado Naranja */
+            --accent: #E67E22; /* Un naranja más vibrante para resaltar */
+            --dorado: #D4AF37; /* Color para detalles finos */
             --text-main: #f8f9fa;
             --text-dim: #a0a8b3;
             --glass: rgba(255, 255, 255, 0.03);
@@ -30,13 +31,13 @@
             background: radial-gradient(circle at top right, #0d1b2a 0%, #050a0f 60%);
         }
 
-        /* Navbar Elegante */
+        /* --- CORRECCIÓN LOGO: MÁS GRANDE Y RESALTADO --- */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 8%;
-            background: rgba(5, 10, 15, 0.8);
+            padding: 30px 8%; /* Más espacio vertical */
+            background: rgba(5, 10, 15, 0.85);
             backdrop-filter: blur(15px);
             position: fixed;
             width: 100%;
@@ -46,18 +47,22 @@
         }
 
         .logo img {
-            height: 55px;
-            transition: transform 0.3s ease;
+            height: 100px; /* ¡Agrandado! Estaba en 55px */
+            width: auto;
+            /* Sombra suave para que resalte sobre el fondo oscuro */
+            filter: drop-shadow(0px 4px 6px rgba(255,255,255,0.15));
+            transition: transform 0.3s ease, filter 0.3s ease;
         }
 
         .logo img:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
+            filter: drop-shadow(0px 6px 12px rgba(230, 126, 34, 0.3)); /* Resalta con color acento */
         }
 
         .nav-socials a {
             color: var(--text-main);
             margin-left: 20px;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             transition: 0.3s;
             opacity: 0.8;
         }
@@ -75,37 +80,37 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 15px;
+            padding: 120px 15px 0; /* Espacio para el navbar más alto */
         }
 
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-size: clamp(2.8rem, 9vw, 5rem);
             margin-bottom: 20px;
             letter-spacing: -1px;
-            background: linear-gradient(to bottom, #fff 40%, #a0a8b3);
+            background: linear-gradient(to bottom, #fff 40%, var(--text-dim));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 300;
             color: var(--text-dim);
-            max-width: 600px;
+            max-width: 650px;
             margin-bottom: 40px;
             letter-spacing: 1px;
         }
 
         .cta-button {
             background-color: var(--accent);
-            color: #000;
-            padding: 18px 45px;
-            border-radius: 2px;
+            color: #fff;
+            padding: 20px 50px;
+            border-radius: 4px;
             text-decoration: none;
             font-weight: 600;
             text-transform: uppercase;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             letter-spacing: 2px;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid var(--accent);
@@ -114,21 +119,21 @@
         .cta-button:hover {
             background-color: transparent;
             color: var(--accent);
-            box-shadow: 0 0 30px rgba(243, 156, 18, 0.3);
+            box-shadow: 0 0 30px rgba(230, 126, 34, 0.4);
         }
 
         /* Sección Servicios */
         .services {
             padding: 100px 8%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
         .card {
             background: var(--bg-card);
-            padding: 50px 30px;
-            border-radius: 4px;
+            padding: 60px 40px;
+            border-radius: 8px;
             border: 1px solid var(--glass);
             text-align: center;
             transition: 0.4s;
@@ -137,28 +142,30 @@
         }
 
         .card:hover {
-            border-color: rgba(243, 156, 18, 0.5);
+            border-color: rgba(230, 126, 34, 0.5);
             transform: translateY(-10px);
-            background: rgba(16, 28, 43, 0.9);
+            background: rgba(16, 28, 43, 0.95);
         }
 
         .card i {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--accent);
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             display: block;
         }
 
         .card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.7rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
         }
 
         .card p {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--text-dim);
             line-height: 1.8;
+            font-weight: 300;
         }
 
         /* Galería Estilo Portfolio */
@@ -169,33 +176,36 @@
         .portfolio h2 {
             text-align: center;
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            color: var(--text-main);
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
         }
 
         .gallery-item {
             aspect-ratio: 1/1;
             overflow: hidden;
-            border-radius: 2px;
+            border-radius: 8px;
             position: relative;
+            border: 1px solid var(--glass);
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(100%) contrast(1.1);
+            /* Inicia con color pero sutil */
+            filter: contrast(1.05) saturate(0.9);
             transition: 0.8s ease;
         }
 
         .gallery-item:hover img {
-            filter: grayscale(0%) scale(1.1);
+            filter: contrast(1.1) saturate(1.1) scale(1.08);
         }
 
         /* Footer */
@@ -203,14 +213,16 @@
             padding: 60px 8% 30px;
             border-top: 1px solid var(--glass);
             text-align: center;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: var(--text-dim);
             letter-spacing: 1px;
+            background-color: #03070a;
         }
 
         @media (max-width: 768px) {
             nav { padding: 15px 5%; }
-            .hero h1 { font-size: 2.5rem; }
+            .logo img { height: 70px; } /* Ajuste para móvil */
+            .hero h1 { font-size: 2.8rem; }
         }
     </style>
 </head>
@@ -218,49 +230,50 @@
 
     <nav>
         <div class="logo">
-            <img src="logo.png" alt="Reloj Express Logo">
+            <img src="logo.png" alt="Reloj Express Osorno">
         </div>
         <div class="nav-socials">
-            <a href="https://instagram.com/TU_USUARIO" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me/569XXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://instagram.com/TU_USUARIO" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/569XXXXXXXX" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
     </nav>
 
     <section class="hero">
         <h1>Excelencia en <br>Cada Segundo</h1>
-        <p>Servicio técnico de alta gama en Osorno y La Unión. Mantención de pilas, correas y restauración de piezas finas.</p>
+        <p>Servicio técnico de precisión en Osorno y La Unión. Mantención de pilas, correas y restauración de piezas finas con total seguridad.</p>
         <a href="https://wa.me/569XXXXXXXX" class="cta-button">Agendar Servicio Express</a>
     </section>
 
     <section class="services">
         <div class="card">
-            <i class="fa-solid fa-bolt-lightning"></i>
+            <i class="fa-solid fa-battery-three-quarters"></i>
             <h3>Pilas Premium</h3>
-            <p>Sustitución de precisión con baterías de óxido de plata de máxima durabilidad.</p>
+            <p>Sustitución de precisión con baterías de óxido de plata de máxima durabilidad y marcas reconocidas.</p>
         </div>
         <div class="card">
-            <i class="fa-solid fa-clock-rotate-left"></i>
+            <i class="fa-solid fa-leather-strap"></i> <i class="fa-solid fa-clock"></i>
             <h3>Correas y Ajustes</h3>
-            <p>Selección de pieles, cueros y acero. Ajuste de eslabones al momento.</p>
+            <p>Venta e instalación de correas de cuero, silicona y acero. Ajuste de eslabones al momento.</p>
         </div>
         <div class="card">
-            <i class="fa-solid fa-wand-sparkles"></i>
+            <i class="fa-solid fa-hand-sparkles"></i>
             <h3>Limpieza Ultrasónica</h3>
-            <p>Eliminación de impurezas y pulido de caja para recuperar el brillo original.</p>
+            <p>Eliminación profunda de impurezas y pulido de caja para recuperar el brillo y elegancia original.</p>
         </div>
     </section>
 
     <section class="portfolio">
         <h2>Proyectos Terminados</h2>
         <div class="gallery-grid">
-            <div class="gallery-item"><img src="reloj1.jpg" alt="Reloj 1"></div>
-            <div class="gallery-item"><img src="reloj2.jpg" alt="Reloj 2"></div>
-            <div class="gallery-item"><img src="reloj3.jpg" alt="Reloj 3"></div>
+            <div class="gallery-item"><img src="reloj1.jpg" alt="Reloj restaurado 1"></div>
+            <div class="gallery-item"><img src="reloj2.jpg" alt="Reloj restaurado 2"></div>
+            <div class="gallery-item"><img src="reloj3.jpg" alt="Reloj restaurado 3"></div>
+            <div class="gallery-item"><img src="reloj4.jpg" alt="Reloj restaurado 4"></div>
         </div>
     </section>
 
     <footer>
-        <p>RELOJ EXPRESS OSORNO &copy; 2026. SERVICIO TÉCNICO PROFESIONAL.</p>
+        <p>RELOJ EXPRESS OSORNO &copy; 2026. SERVICIO TÉCNICO PROFESIONAL EN OSORNO Y LA UNIÓN.</p>
     </footer>
 
 </body>
