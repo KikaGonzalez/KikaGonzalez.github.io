@@ -3,159 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reloj Express Osorno | Excelencia</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <title>Reloj Express Osorno | Servicio Técnico</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
+        /* VARIABLES: Modifica los colores aquí fácilmente */
         :root {
-            --bg-deep: #050a0f;
-            --accent: #E67E22;
-            --text-main: #f8f9fa;
+            --fondo: #050a0f;
+            --naranja-marca: #E67E22;
+            --verde-whatsapp: #25d366;
+            --blanco: #ffffff;
+            --gris-suave: #a0a8b3;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--bg-deep);
-            color: var(--text-main);
+            background-color: var(--fondo);
+            color: var(--blanco);
             font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            background: radial-gradient(circle at top right, #0d1b2a 0%, #050a0f 60%);
+            line-height: 1.6;
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            background: rgba(5, 10, 15, 0.9);
-            backdrop-filter: blur(10px);
-            position: fixed;
+        /* --- BLOQUE 1: IMAGEN PRINCIPAL (HERO) --- */
+        .hero-section {
+            position: relative;
             width: 100%;
-            top: 0;
-            z-index: 1000;
+            min-height: 70vh; /* Altura de la imagen principal */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0d1b2a; /* Color de fondo si la imagen falla */
         }
 
-        /* --- MEJORA DEL LOGO --- */
-        .logo-container {
-            background: transparent;
-            padding: 5px;
+        /* Contenedor de la imagen hero para asegurar que cargue */
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 1;
         }
 
-        .logo-container img {
-            height: 110px; /* Tamaño imponente */
-            width: auto;
-            display: block;
-            /* Si tiene cuadros blancos/grises, esto ayuda a suavizarlos contra el fondo oscuro */
-            mix-blend-mode: screen; 
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.1));
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.3); /* Oscurece un poco la imagen para que el botón resalte */
+            z-index: 2;
         }
 
-        .nav-socials a {
+        .btn-whatsapp {
+            position: relative;
+            z-index: 3;
+            background-color: var(--verde-whatsapp);
             color: white;
-            margin-left: 20px;
-            font-size: 1.5rem;
+            padding: 20px 40px;
+            border-radius: 50px;
             text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: 0.3s transform ease;
         }
 
-        .hero {
-            height: 80vh;
+        .btn-whatsapp:hover { transform: scale(1.05); }
+
+        /* --- BLOQUE 2: GALERÍA DE TRABAJOS --- */
+        .galeria-container {
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .galeria-titulo {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--naranja-marca);
+        }
+
+        .grid-relojes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .tarjeta-reloj {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            padding-top: 100px;
+            position: relative;
         }
 
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-        }
-
-        .cta-button {
-            background-color: var(--accent);
-            color: white;
-            padding: 15px 40px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 4px;
-            margin-top: 20px;
-        }
-
-        /* --- GALERÍA RESISTENTE --- */
-        .portfolio {
-            padding: 80px 8%;
-        }
-
-        .portfolio h2 {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 40px;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            background: #101c2b; /* Fondo de respaldo por si la foto falla */
-            aspect-ratio: 1/1;
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .gallery-item img {
+        .tarjeta-reloj img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* Si la imagen no carga, este texto se verá */
-            color: #444;
+            display: block;
+        }
+
+        /* Icono que aparece si la imagen no carga */
+        .tarjeta-reloj::before {
+            content: "\f017"; /* Icono de reloj font-awesome */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.1);
+            position: absolute;
+            z-index: 0;
         }
 
         footer {
             text-align: center;
-            padding: 40px;
-            font-size: 0.8rem;
-            opacity: 0.6;
+            padding: 50px 20px;
+            color: var(--gris-suave);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Ajustes para Celulares */
+        @media (max-width: 600px) {
+            .hero-section { min-height: 50vh; }
+            .btn-whatsapp { font-size: 1rem; padding: 15px 25px; }
+            .galeria-titulo { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo-container">
-            <img src="logo.png" alt="Reloj Express Osorno">
-        </div>
-        <div class="nav-socials">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-        </div>
-    </nav>
+    <header class="hero-section">
+        <img src="hero-reloj.jpg" alt="Reloj Express Osorno" class="hero-bg" onerror="this.style.display='none'">
+        <div class="hero-overlay"></div>
+        
+        <a href="https://wa.me/569XXXXXXXX" class="btn-whatsapp">
+            <i class="fab fa-whatsapp"></i>
+            AGENDAR POR WHATSAPP
+        </a>
+    </header>
 
-    <section class="hero">
-        <h1>Excelencia en <br>Cada Segundo</h1>
-        <p>Servicio técnico especializado en Osorno y La Unión.</p>
-        <a href="#" class="cta-button">Agendar Servicio</a>
-    </section>
-
-    <section class="portfolio">
-        <h2>Trabajos Recientes</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item"><img src="reloj1.jpg" alt="Reloj 1"></div>
-            <div class="gallery-item"><img src="reloj2.jpg" alt="Reloj 2"></div>
-            <div class="gallery-item"><img src="reloj3.jpg" alt="Reloj 3"></div>
-            <div class="gallery-item"><img src="reloj4.jpg" alt="Reloj 4"></div>
+    <main class="galeria-container">
+        <h2 class="galeria-titulo">Trabajos Realizados</h2>
+        
+        <div class="grid-relojes">
+            <div class="tarjeta-reloj">
+                <img src="reloj1.jpg" alt="Trabajo 1">
+            </div>
+            <div class="tarjeta-reloj">
+                <img src="reloj2.jpg" alt="Trabajo 2">
+            </div>
+            <div class="tarjeta-reloj">
+                <img src="reloj3.jpg" alt="Trabajo 3">
+            </div>
+            <div class="tarjeta-reloj">
+                <img src="reloj4.jpg" alt="Trabajo 4">
+            </div>
         </div>
-    </section>
+    </main>
 
     <footer>
-        RELOJ EXPRESS OSORNO &copy; 2026
+        <p>RELOJ EXPRESS OSORNO &copy; 2026</p>
+        <p>Expertos en Pilas, Correas y Mantención</p>
     </footer>
 
 </body>
