@@ -1,349 +1,105 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reloj Express Osorno</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fffcf0; /* Fondo crema como tu sketch */
+            font-family: Arial, sans-serif;
+        }
 
-  <title>Reloj Express Osorno</title>
+        /* --- SECCIÓN HERO --- */
+        .hero-container {
+            width: 100%;
+            line-height: 0; /* Elimina espacios residuales debajo de la imagen */
+        }
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+        .hero-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
-  <style>
+        /* --- SECCIÓN BOTÓN WHATSAPP --- */
+        .cta-container {
+            text-align: center;
+            padding: 40px 0;
+        }
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+        .btn-whatsapp {
+            background-color: #78e08f; /* El verde suave de tu sketch */
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            display: inline-block;
+            transition: background 0.3s;
+            text-transform: uppercase;
+        }
 
-    body{
-      font-family:'Inter', sans-serif;
-      background:#ece4cf;
-      color:#1e1e1e;
-      overflow-x:hidden;
-    }
+        .btn-whatsapp:hover {
+            background-color: #61b373;
+        }
 
-    html{
-      scroll-behavior:smooth;
-    }
+        /* --- SECCIÓN PROYECTOS --- */
+        .proyectos-titulo {
+            text-align: center;
+            font-size: 28px;
+            color: #2d3436;
+            margin-bottom: 40px;
+            font-weight: bold;
+        }
 
-    /* HERO */
+        .grid-proyectos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto 60px auto;
+            padding: 0 20px;
+        }
 
-    .hero{
-      height:100vh;
-      background:
-      linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-      url('hero-reloj.jpg');
-      background-size:cover;
-      background-position:center;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      position:relative;
-      text-align:center;
-      padding:20px;
-    }
+        .grid-proyectos img {
+            width: 100%;
+            height: auto;
+            border-radius: 0; /* Rectangulares como en tu sketch */
+            display: block;
+        }
 
-    .logo{
-      position:absolute;
-      top:30px;
-      left:30px;
-      width:140px;
-      filter:drop-shadow(0 4px 10px rgba(0,0,0,0.4));
-    }
-
-    .hero-content{
-      max-width:850px;
-      color:white;
-      animation:fadeUp 1s ease;
-    }
-
-    .hero h1{
-      font-family:'Cormorant Garamond', serif;
-      font-size:5rem;
-      line-height:0.95;
-      margin-bottom:25px;
-      font-weight:700;
-    }
-
-    .hero p{
-      font-size:1.15rem;
-      line-height:1.8;
-      margin-bottom:35px;
-      color:#f1f1f1;
-    }
-
-    .btn{
-      display:inline-block;
-      background:#25D366;
-      color:white;
-      padding:16px 34px;
-      border-radius:50px;
-      text-decoration:none;
-      font-weight:600;
-      transition:0.3s;
-      box-shadow:0 10px 25px rgba(0,0,0,0.25);
-    }
-
-    .btn:hover{
-      transform:translateY(-3px);
-      background:#1ebe5d;
-    }
-
-    /* SECCIONES */
-
-    section{
-      padding:90px 8%;
-    }
-
-    .section-title{
-      text-align:center;
-      font-size:3rem;
-      margin-bottom:60px;
-      font-family:'Cormorant Garamond', serif;
-      color:#162238;
-    }
-
-    /* GALERIA */
-
-    .galeria{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:35px;
-    }
-
-    .card{
-      background:white;
-      border-radius:24px;
-      overflow:hidden;
-      box-shadow:0 15px 35px rgba(0,0,0,0.08);
-      transition:0.4s;
-    }
-
-    .card:hover{
-      transform:translateY(-10px);
-      box-shadow:0 20px 45px rgba(0,0,0,0.16);
-    }
-
-    .card img{
-      width:100%;
-      height:340px;
-      object-fit:cover;
-      display:block;
-    }
-
-    .card-content{
-      padding:25px;
-      text-align:center;
-    }
-
-    .card h3{
-      font-size:1.1rem;
-      margin-bottom:10px;
-      color:#162238;
-    }
-
-    .card p{
-      color:#666;
-      font-size:0.95rem;
-      line-height:1.6;
-    }
-
-    /* SOBRE NOSOTROS */
-
-    .about{
-      background:#162238;
-      color:white;
-      border-radius:35px;
-      padding:70px;
-      text-align:center;
-    }
-
-    .about h2{
-      font-family:'Cormorant Garamond', serif;
-      font-size:3rem;
-      margin-bottom:20px;
-    }
-
-    .about p{
-      max-width:800px;
-      margin:auto;
-      line-height:1.9;
-      color:#d9d9d9;
-      font-size:1.05rem;
-    }
-
-    /* FOOTER */
-
-    footer{
-      padding:45px 20px;
-      text-align:center;
-      background:#0f1724;
-      color:#cfcfcf;
-      margin-top:80px;
-    }
-
-    footer p{
-      margin:8px 0;
-    }
-
-    /* ANIMACION */
-
-    @keyframes fadeUp{
-      from{
-        opacity:0;
-        transform:translateY(40px);
-      }
-
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-    }
-
-    /* RESPONSIVE */
-
-    @media(max-width:768px){
-
-      .hero h1{
-        font-size:3.4rem;
-      }
-
-      .hero p{
-        font-size:1rem;
-      }
-
-      .logo{
-        width:110px;
-        top:20px;
-        left:20px;
-      }
-
-      .section-title{
-        font-size:2.3rem;
-      }
-
-      .about{
-        padding:45px 25px;
-      }
-
-    }
-
-  </style>
+        /* Ajuste para móvil */
+        @media (max-width: 600px) {
+            .grid-proyectos {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- HERO -->
-
-  <header class="hero">
-
-    <img src="logo.png" alt="Logo Reloj Express" class="logo">
-
-    <div class="hero-content">
-
-      <h1>Excelencia en<br>Cada Segundo</h1>
-
-      <p>
-        Servicio técnico especializado en relojería en Osorno y La Unión.
-        Cambio de pilas, correas, mantención y restauración de piezas finas
-        con atención profesional y segura.
-      </p>
-
-      <a 
-        class="btn"
-        href="https://wa.me/56912345678"
-        target="_blank"
-      >
-        Agendar por WhatsApp
-      </a>
-
+    <div class="hero-container">
+        <img src="hero-reloj.jpg" alt="Reloj Express" class="hero-img">
     </div>
 
-  </header>
-
-  <!-- PROYECTOS -->
-
-  <section>
-
-    <h2 class="section-title">Proyectos Terminados</h2>
-
-    <div class="galeria">
-
-      <div class="card">
-        <img src="proyectos/reloj1.jpg" alt="">
-        <div class="card-content">
-          <h3>Restauración Vintage</h3>
-          <p>
-            Limpieza profunda y recuperación estética completa.
-          </p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="proyectos/reloj2.jpg" alt="">
-        <div class="card-content">
-          <h3>Cambio de Correa Premium</h3>
-          <p>
-            Instalación profesional y ajuste preciso.
-          </p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="proyectos/reloj3.jpg" alt="">
-        <div class="card-content">
-          <h3>Mantención de Lujo</h3>
-          <p>
-            Servicio completo para relojes de alta gama.
-          </p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="proyectos/reloj4.jpg" alt="">
-        <div class="card-content">
-          <h3>Reparación Completa</h3>
-          <p>
-            Ajuste interno y renovación exterior profesional.
-          </p>
-        </div>
-      </div>
-
+    <div class="cta-container">
+        <a href="https://wa.me/tu_numero_aqui" class="btn-whatsapp">
+            ✉ AGENDAR POR WHATSAPP
+        </a>
     </div>
 
-  </section>
-
-  <!-- SOBRE NOSOTROS -->
-
-  <section>
-
-    <div class="about">
-
-      <h2>Precisión, Elegancia y Confianza</h2>
-
-      <p>
-        En Reloj Express trabajamos con dedicación y detalle para entregar
-        un servicio técnico de alta calidad. Nuestro compromiso es devolver
-        la vida y elegancia a cada reloj, utilizando herramientas adecuadas
-        y técnicas profesionales para asegurar resultados impecables.
-      </p>
-
+    <h2 class="proyectos-titulo">Proyectos Terminados</h2>
+    
+    <div class="grid-proyectos">
+        <img src="reloj1.jpg" alt="Proyecto 1">
+        <img src="reloj2.jpg" alt="Proyecto 2">
+        <img src="reloj3.jpg" alt="Proyecto 3">
+        <img src="reloj4.jpg" alt="Proyecto 4">
     </div>
-
-  </section>
-
-  <!-- FOOTER -->
-
-  <footer>
-
-    <p><strong>Reloj Express Osorno</strong></p>
-    <p>Servicio técnico de relojería</p>
-    <p>Osorno · La Unión · Chile</p>
-
-  </footer>
 
 </body>
 </html>
