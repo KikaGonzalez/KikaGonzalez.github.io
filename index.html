@@ -3,177 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reloj Express Osorno | Servicio Técnico</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <title>Reloj Express - Osorno</title>
     <style>
-        /* VARIABLES: Modifica los colores aquí fácilmente */
-        :root {
-            --fondo: #050a0f;
-            --naranja-marca: #E67E22;
-            --verde-whatsapp: #25d366;
-            --blanco: #ffffff;
-            --gris-suave: #a0a8b3;
-        }
+        body { margin: 0; font-family: Arial, sans-serif; background-color: #000; color: white; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            background-color: var(--fondo);
-            color: var(--blanco);
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
-        }
-
-        /* --- BLOQUE 1: IMAGEN PRINCIPAL (HERO) --- */
-        .hero-section {
+        /* Contenedor principal del Hero */
+        .hero {
             position: relative;
             width: 100%;
-            min-height: 70vh; /* Altura de la imagen principal */
+            min-height: 80vh; /* Ajusta la altura al 80% de la pantalla */
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('hero-reloj.jpg');
+            background-size: cover; /* Cambia a 'contain' si quieres ver la imagen completa sin recortes, aunque dejará bordes */
+            background-position: center center;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            background-color: #0d1b2a; /* Color de fondo si la imagen falla */
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
         }
 
-        /* Contenedor de la imagen hero para asegurar que cargue */
-        .hero-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover;
-            z-index: 1;
+        .logo {
+            width: 150px;
+            margin-bottom: 20px;
         }
 
-        .hero-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.3); /* Oscurece un poco la imagen para que el botón resalte */
-            z-index: 2;
+        .hero h1 {
+            font-size: 3rem;
+            margin: 20px 0;
+            font-family: 'Serif', Georgia, serif;
         }
 
+        /* Botón de WhatsApp */
         .btn-whatsapp {
-            position: relative;
-            z-index: 3;
-            background-color: var(--verde-whatsapp);
+            background-color: #64d26d;
             color: white;
-            padding: 20px 40px;
+            padding: 15px 30px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.2rem;
             display: flex;
             align-items: center;
-            gap: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: 0.3s transform ease;
+            gap: 10px;
+            transition: transform 0.3s;
         }
 
-        .btn-whatsapp:hover { transform: scale(1.05); }
+        .btn-whatsapp:hover {
+            transform: scale(1.05);
+        }
 
-        /* --- BLOQUE 2: GALERÍA DE TRABAJOS --- */
-        .galeria-container {
-            padding: 60px 5%;
+        /* Galería de Trabajos Realizados */
+        .galeria {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .grid-proyectos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .galeria-titulo {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            color: var(--naranja-marca);
-        }
-
-        .grid-relojes {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .tarjeta-reloj {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            overflow: hidden;
-            aspect-ratio: 1 / 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .tarjeta-reloj img {
+        .grid-proyectos img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* Icono que aparece si la imagen no carga */
-        .tarjeta-reloj::before {
-            content: "\f017"; /* Icono de reloj font-awesome */
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            font-size: 3rem;
-            color: rgba(255, 255, 255, 0.1);
-            position: absolute;
-            z-index: 0;
-        }
-
-        footer {
-            text-align: center;
-            padding: 50px 20px;
-            color: var(--gris-suave);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        /* Ajustes para Celulares */
-        @media (max-width: 600px) {
-            .hero-section { min-height: 50vh; }
-            .btn-whatsapp { font-size: 1rem; padding: 15px 25px; }
-            .galeria-titulo { font-size: 1.8rem; }
+            height: 300px;
+            object-fit: cover; /* Mantiene la proporción de los relojes en la galería */
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
 
-    <header class="hero-section">
-        <img src="hero-reloj.jpg" alt="Reloj Express Osorno" class="hero-bg" onerror="this.style.display='none'">
-        <div class="hero-overlay"></div>
+    <section class="hero">
+        <img src="logo.png" alt="Reloj Express Osorno" class="logo">
         
-        <a href="https://wa.me/569XXXXXXXX" class="btn-whatsapp">
-            <i class="fab fa-whatsapp"></i>
-            AGENDAR POR WHATSAPP
+        <a href="https://wa.me/tunúmero" class="btn-whatsapp">
+            <span>AGENDAR POR WHATSAPP</span>
         </a>
-    </header>
 
-    <main class="galeria-container">
-        <h2 class="galeria-titulo">Trabajos Realizados</h2>
-        
-        <div class="grid-relojes">
-            <div class="tarjeta-reloj">
-                <img src="reloj1.jpg" alt="Trabajo 1">
-            </div>
-            <div class="tarjeta-reloj">
-                <img src="reloj2.jpg" alt="Trabajo 2">
-            </div>
-            <div class="tarjeta-reloj">
-                <img src="reloj3.jpg" alt="Trabajo 3">
-            </div>
-            <div class="tarjeta-reloj">
-                <img src="reloj4.jpg" alt="Trabajo 4">
-            </div>
+        <h1>Excelencia en<br>Cada Segundo</h1>
+        <p>Servicio técnico de precisión en Osorno y La Unión.</p>
+    </section>
+
+    <section class="galeria">
+        <h2 style="color: #d4a373;">Trabajos Realizados</h2>
+        <div class="grid-proyectos">
+            <img src="proyectos/reloj1.jpg" alt="Trabajo 1">
+            <img src="proyectos/reloj2.jpg" alt="Trabajo 2">
+            <img src="proyectos/reloj3.jpg" alt="Trabajo 3">
+            <img src="proyectos/reloj4.jpg" alt="Trabajo 4">
         </div>
-    </main>
-
-    <footer>
-        <p>RELOJ EXPRESS OSORNO &copy; 2026</p>
-        <p>Expertos en Pilas, Correas y Mantención</p>
-    </footer>
+    </section>
 
 </body>
 </html>
